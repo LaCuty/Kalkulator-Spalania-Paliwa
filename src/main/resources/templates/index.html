@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator spalania paliwa na trasie</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulator spalania paliwa na trasie</h1>
+        <form th:action="@{/calculate}" th:object="${fuelCalculatorForm}" method="post">
+            <div class="form-group">
+                <label for="distance">Dystans (km):</label>
+                <input type="number" id="distance" th:field="*{distance}" step="0.1" required />
+            </div>
+            <div class="form-group">
+                <label for="fuelConsumption">Spalanie paliwa (l/100 km):</label>
+                <input type="number" id="fuelConsumption" th:field="*{fuelConsumption}" step="0.1" required />
+            </div>
+            <div class="form-group">
+                <label for="fuelPrice">Cena paliwa (PLN/l):</label>
+                <input type="number" id="fuelPrice" th:field="*{fuelPrice}" step="0.01" required />
+            </div>
+            <button type="submit">Oblicz</button>
+        </form>
+        <div class="result" th:if="${cost != null}">
+            <h2>Koszt przejechania trasy: <span th:text="${cost}"></span> PLN</h2>
+        </div>
+        <div class="footer">
+            Strzałkowski Patryk<br>
+            Informatyka Zaoczna<br>
+            Semestr IV Grupa 2
+        </div>
+    </div>
+</body>
+</html>
